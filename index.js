@@ -6,7 +6,7 @@ require("dotenv").config()
 const app = express()
 app.use(express.json())
 app.use(cors({
-    origin: true,
+    origin: 'https://vms-rho.vercel.app',
     credentials: true
 }))
 
