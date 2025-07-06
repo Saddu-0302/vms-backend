@@ -11,5 +11,12 @@ exports.getAllVisitors = asyncHandler(async (req, res) => {
 })
 exports.updateStatus = asyncHandler(async (req, res) => {
     const { id } = req.params
-    res.status(200).json({ message: "Status Update Successfull" })
+    const { status } = req.body
+
+    if (!status) {
+        return res.status(400).json({ message: "status is required" })
+    }
+
+    const result = await visitor.findByIdAndUpdate(id, { status }, { new: true })
+    res.status(200).json({ message: "Status Update Successfull", result })
 })
